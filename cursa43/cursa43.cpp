@@ -7,7 +7,7 @@ int main()
 	SetConsoleOutputCP(1251);
 	cout << "Курсовая работа!\n";
 	int meniu = -1;
-	while (meniu != 4)
+	while (meniu != 8)
 	{
 		system("cls");
 		cout << " МЕНЮ:\n";
