@@ -64,7 +64,7 @@ public:
 					cout << s[i].sess[k2].subj[k1] << " - " << s[i].sess[k2].mark[k1] << " ";
 				}
 			}
-			cout << "\n|_________________________________________________________|";
+			cout << "\n\n\n";
 			i++;
 		}
 		return 0;
@@ -133,6 +133,7 @@ public:
 						space11 = line.find(" ", space12 + 1);
 					}
 					student[i].c = stoi(line.substr(space11 + 1, 1));
+					i++;
 				}
 			}
 		}
@@ -378,15 +379,18 @@ public:
 			}
 			out.close();
 			ifs.close();
+			system("cls");
+			cout << "\n ÄÀÍÍÛÅ Î ÑÒÓÄÅÍÒÅ ÁÛËÈ ÈÇÌÅÍÅÍÛ. ÍÎÂÛÅ ÄÀÍÍÛÅ:\n\n";
+			printInfo(student);
 			delete[] student;
 			if (remove("studentInfo.bin") != 0)
-				cout << "Remove operation failed" << endl;
+				cout << "\nRemove operation failed" << endl;
 			else
-				cout << "studentInfo.bin" << " has been removed." << endl;
+				cout << "\nstudentInfo.bin" << " has been removed." << endl;
 			if (rename("buff.bin", "studentInfo.bin") != 0)
-				cout << "Rename operation failed" << endl;
+				cout << "\nRename operation failed" << endl;
 			else
-				cout << "buff.bin has been renamed studentInfo.bin ." << endl;
+				cout << "\nbuff.bin has been renamed studentInfo.bin ." << endl;
 			cout << "\nÃîòîâî. Íàæìèòå ENTER, ÷òîáû âåğíóòüñÿ â ãëàâíîå ìåíş";
 			getchar();
 			getchar();
@@ -394,7 +398,7 @@ public:
 		}
 		else
 		{
-			cout << "Òàêîãî ãğóïïû íåò. íàæìèòå åíòåğ, ÷òîáû ïîâòîğèòü ïîïûòêó";
+			cout << "\nÒàêîãî ãğóïïû íåò. íàæìèòå åíòåğ, ÷òîáû ïîâòîğèòü ïîïûòêó";
 			getchar();
 			getchar();
 			edit_student();
@@ -518,7 +522,7 @@ public:
 				studentcount++;
 			}
 		}
-		i1 = studentcount;
+		i1 = pow(studentcount, 2);
 		while (i1--)
 		{
 			bool swapped = false;
@@ -528,14 +532,6 @@ public:
 				{
 					swap(student[k], student[k + 1]);
 					swapped = true;
-				}
-				if (min > student[k].birthYear)
-				{
-					min < student[k].birthYear;
-				}
-				if (max < student[k].birthYear)
-				{
-					max = student[k].birthYear;
 				}
 			}
 			if (swapped == false)
@@ -564,13 +560,10 @@ public:
 	void show_group()
 	{
 		system("cls");
-		string group;
 		cout << "|----------------------------------------------|" << endl;
 		cout << "|      Âûâîä èíôîğìàöèè î ãğóïïå íà ıêğàí      |" << endl;
 		cout << "|______________________________________________|" << endl;
-		cout << "Ââåäèòå ãğóïïó ñòóäåíòà: " << endl;
-		group = istring();
-		StudentData* student = getInfo(group);
+		StudentData* student = getInfo(" ");
 		if (student[0].name != "")
 		{
 			printInfo(student);
