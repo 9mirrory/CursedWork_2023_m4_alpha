@@ -2,6 +2,9 @@
 
 int iint()
 {
+	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	int num;
 	while (1)
 	{
@@ -18,6 +21,9 @@ int iint()
 }
 
 int iyear() {
+	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	int year;
 	while (1) {
 		year = iint();
@@ -32,6 +38,9 @@ int iyear() {
 }
 
 int imonth() {
+	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	int month;
 	while (1)
 	{
@@ -49,6 +58,9 @@ int imonth() {
 
 int iday(int month)
 {
+	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	int day;
 	while (1) {
 		day = iint();
@@ -79,6 +91,9 @@ int iday(int month)
 
 unsigned short imark()
 {
+	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	short mark;
 	while (1)
 	{
@@ -91,6 +106,9 @@ unsigned short imark()
 
 string istring()
 {
+	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	string str;
 	getline(cin >> ws, str);
 	return str;

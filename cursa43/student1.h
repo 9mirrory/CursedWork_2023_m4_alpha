@@ -30,6 +30,9 @@ class Student
 public:
 	StudentData* printInfo(StudentData* s)
 	{
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		int sesscount, commaCount, n = 33, i = 0;
 		while (s[i].name != "")
 		{
@@ -72,6 +75,9 @@ public:
 
 	StudentData* getInfo(string subs)
 	{
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		size_t space1, space2, space3, space4, space5, space6, space13, space7, space8, space9, space10, dot1, dot2, space11, space12;
 		size_t comma1;
 		int semicolonCount, commaCount, n = 33, i = 0, c, i1;
@@ -141,6 +147,9 @@ public:
 
 	void addStudent()
 	{
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		int j = 0, NumMarks, sesscount, n;
 		string man = "М", woman = "Ж";
 		system("cls");
@@ -234,6 +243,9 @@ public:
 
 	void edit_student()
 	{
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		system("cls");
 		int i = 0, n = 0, sessnum;
 		string string, subs = "", line, subj, surname, name, man = "М", woman = "Ж";
@@ -405,6 +417,9 @@ public:
 
 	void delete_student()
 	{
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		system("cls");
 		int n = 0;
 		string surname, name, boonum, line;
@@ -458,6 +473,9 @@ public:
 
 	void import_students() { //предполагается, что в репозитории будет находиться сторонняя база студентов, 
 		//мы должны будем ввести название файла чтобы импортировать записи в основной файл
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		string filename, line;
 		int n = 0;
 		cout << " _______________________________________" << endl;
@@ -502,6 +520,9 @@ public:
 
 	void exercise()
 	{
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		system("cls");
 		int studentcount, i = 0, min = 2200, max = 0, i1 = 0;
 		string group;
@@ -564,6 +585,9 @@ public:
 
 	void show_group()
 	{
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		system("cls");
 		string group;
 		cout << "|----------------------------------------------|" << endl;
@@ -592,6 +616,9 @@ public:
 
 	void show_student()
 	{
+		setlocale(LC_ALL, "Russian");
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		system("cls");
 		string name, surname;
 		cout << "|----------------------------------------------|" << endl;
