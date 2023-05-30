@@ -2,6 +2,7 @@
 
 int main()
 {
+	Student s;
 	setlocale(LC_ALL, "Russian");
 	SetConsoleCP(1251); 
 	SetConsoleOutputCP(1251);
@@ -22,25 +23,25 @@ int main()
 		cin >> meniu;
 		switch (meniu) {
 		case 1:
-			addStudent();
+			s.addStudent();
 			break;
 		case 2:
-			show_group();
+			s.show_group();
 			break;
 		case 3:
-			show_student();
+			s.show_student();
 			break;
 		case 4:
-			edit_student();
+			s.edit_student();
 			break;
 		case 5:
-			delete_student();
+			s.delete_student();
 			break;
 		case 6:
-			import_students();
+			s.import_students();
 			break;
 		case 7:
-			exercise();
+			s.exercise();
 			break;
 		case 8:
 			cout << "Выход из курсовой работы" << "\n";
