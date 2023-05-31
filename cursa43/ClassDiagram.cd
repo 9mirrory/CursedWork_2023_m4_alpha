@@ -7,15 +7,22 @@
       <FileName>student1.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Input_Info">
+    <Position X="2.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAQAgEAAAIAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>idata1.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="session">
-    <Position X="5.25" Y="1" Width="1.5" />
+    <Position X="6" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAA=</HashCode>
       <FileName>student1.h</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="StudentData">
-    <Position X="3" Y="1" Width="1.5" />
+    <Position X="4.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QIAAAAAIgAAAAAAIAAQEAAgAIAQEAAKAEAAAAAAAAAA=</HashCode>
       <FileName>student1.h</FileName>

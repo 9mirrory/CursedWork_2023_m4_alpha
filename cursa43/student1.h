@@ -25,9 +25,10 @@ struct StudentData
 	session sess[10];
 };
 
-class Student
+class Student: public Input_Info
 {
-public:
+private:
+	int studentcount = 0;
 	StudentData* printInfo(StudentData* s)
 	{
 		int sesscount, commaCount, n = 33, i = 0;
@@ -68,6 +69,32 @@ public:
 			i++;
 		}
 		return 0;
+	}
+
+	StudentData* bubble_sort(StudentData* s)
+	{
+		for (int i = 0; s[i].name != ""; i++)
+		{
+			if (s[i].name != "")
+			{
+				studentcount++;
+			}
+		}
+		int i1 = pow(studentcount, 2);
+		while (i1--)
+		{
+			bool swapped = false;
+			for (int k = 0; k < studentcount - 1; k++)
+			{
+				if (s[k].booknum > s[k + 1].booknum && s[k].c > s[k + 1].c)
+				{
+					swap(s[k], s[k + 1]);
+					swapped = true;
+				}
+			}
+			if (swapped == false)
+				break;
+		}
 	}
 
 	StudentData* getInfo(string subs)
@@ -139,7 +166,7 @@ public:
 		}
 		return student;
 	}
-
+public:
 	void addStudent()
 	{
 		system("cls");
@@ -159,11 +186,11 @@ public:
 			out.open("studentInfo.bin", ios_base::app | ios_base::binary);
 			cout << "Введите данные ученика " << i + 1 << "." << endl;
 			cout << "Введите фамилию: ";
-			students[i].surname = istring();
+			students[i].surname = istringwws();
 			cout << "\nВведите имя: ";
-			students[i].name = istring();
+			students[i].name = istringwws();
 			cout << "\nВведите отчество: ";
-			students[i].midname = istring();
+			students[i].midname = istringwws();
 			cout << "\nВведите год рождения: ";
 			students[i].birthYear = iyear();
 			cout << "Введите месяц рождения: ";
@@ -173,13 +200,13 @@ public:
 			cout << "\nВведите год поступления: ";
 			students[i].startYear = iyear();
 			cout << "\nВведите название кафедры: ";
-			students[i].faculty = istring();
+			students[i].faculty = istringwws();
 			cout << "\nВведите название института (сокращенно): ";
-			students[i].inst = istring();
+			students[i].inst = istringwws();
 			cout << "\nВведите название группы: ";
-			students[i].group = istring();
+			students[i].group = istringwws();
 			cout << "\nВведите номер зачетной книжки: ";
-			students[i].booknum = istring();
+			students[i].booknum = istringwws();
 			cout << "\nВведите пол \n(М, Ж) : ";
 			students[i].sex = istring();
 			while (students[i].sex != "М" && students[i].sex != "Ж")
@@ -241,17 +268,29 @@ public:
 		ofstream out;
 		out.open("buff.bin", ios::out | ios::binary);
 		cout << "|------------------------------------|" << endl;
-		cout << "|  МЕНЮ ИЗМЕНЕНИЯ ДАННЫХ О СТУДЕНТАХ |" << endl;
+		cout << "|  МЕНЮ ИЗМЕНЕНИЯ ДАННЫХ О СТУДЕНТЕ  |" << endl;
 		cout << "|------------------------------------|" << endl;
-		cout << "Введите Фамилию студента: " << endl;
-		surname = istring();
-		cout << "Введите Имя студента: " << endl;
-		name = istring();
-		subs += surname;
-		subs += " ";
-		subs += name;
+		cout << "| (1) ПО НОМЕРУ ЗАЧЕТНОЙ КНИЖКИ      |" << endl;
+		cout << "| (2) ПО ИМЕНИ И ФАМИЛИИ             |" << endl;
+		cout << "|____________________________________|" << endl;
+		int choice = iint();
+		switch (choice)
+		{
+			case 1:
+				cout << "Введите номер зачетной книжки: " << endl;
+				name = istring();
+				subs = name;
+			case 2:
+				cout << "Введите Фамилию студента: " << endl;
+				surname = istring();
+				cout << "Введите Имя студента: " << endl;
+				name = istring();
+				subs += surname;
+				subs += " ";
+				subs += name;
+		}
 		StudentData* student = getInfo(subs);
-		if (student[0].name != "" && student[0].name == name && student[0].surname == surname)
+		if (student[0].name != "" && (student[0].surname + " " + student[0].name == subs || student[0].booknum == subs))
 		{
 			printInfo(student);
 			while (getline(ifs, line))
@@ -398,7 +437,7 @@ public:
 		}
 		else
 		{
-			cout << "\nТакого группы нет. нажмите ентер, чтобы повторить попытку";
+			cout << "\nТакого студента нет. нажмите ентер, чтобы повторить попытку";
 			getchar();
 			getchar();
 			edit_student();
@@ -418,14 +457,26 @@ public:
 		cout << "|------------------------------------|" << endl;
 		cout << "|  МЕНЮ УДАЛЕНИЯ ДАННЫХ О СТУДЕНТЕ   |" << endl;
 		cout << "|------------------------------------|" << endl;
-		cout << "Введите Фамилию студента: " << endl;
-		surname = istring();
-		cout << "Введите Имя студента: " << endl;
-		name = istring();
+		cout << "| (1) ПО НОМЕРУ ЗАЧЕТНОЙ КНИЖКИ      |" << endl;
+		cout << "| (2) ПО ИМЕНИ И ФАМИЛИИ             |" << endl;
+		cout << "|____________________________________|" << endl;
+		int choice = iint();
 		string subs = "";
-		subs += surname;
-		subs += " ";
-		subs += name;
+		switch (choice)
+		{
+			case 1:
+				cout << "Введите номер зачетной книжки: " << endl;
+				name = istring();
+				subs = name;
+			case 2:
+				cout << "Введите Фамилию студента: " << endl;
+				surname = istring();
+				cout << "Введите Имя студента: " << endl;
+				name = istring();
+				subs += surname;
+				subs += " ";
+				subs += name;
+		}
 		while (getline(ifs, line))
 		{
 			if (line.find(subs) != string::npos)
@@ -476,31 +527,41 @@ public:
 		filename = istring();
 		ifstream ifs;
 		ofstream ofs;
-
-		switch (n)
+		ifs.open(filename.c_str(), ios::in);
+		if (ifs.is_open())
 		{
-		case 1:
-			ifs.open(filename.c_str(), ios::in | ios::binary);
-			ofs.open("studentInfo.bin", ios::out | ios::binary | ios::app);
-			while (getline(ifs, line))
+			switch (n)
 			{
-				ofs << line << "\n";
+			case 1:
+				ifs.open(filename.c_str(), ios::in | ios::binary);
+				ofs.open("studentInfo.bin", ios::out | ios::binary | ios::app);
+				while (getline(ifs, line))
+				{
+					ofs << line << "\n";
+				}
+				break;
+			case 2:
+				ifs.open(filename.c_str(), ios::in);
+				ofs.open("studentInfo.bin", ios::out | ios::binary | ios::app);
+				while (getline(ifs, line))
+				{
+					ofs << line << "\n";
+				}
+				break;
 			}
-			break;
-		case 2:
-			ifs.open(filename.c_str(), ios::in);
-			ofs.open("studentInfo.bin", ios::out | ios::binary | ios::app);
-			while (getline(ifs, line))
-			{
-				ofs << line << "\n";
-			}
-			break;
+			cout << "\nДАННЫЕ БЫЛИ УСПЕШНО ПЕРЕНЕСЕНЫ!!!!\n";
+			cout << "Готово. Нажмите ENTER, чтобы вернуться в главное меню";
+			getchar();
+			getchar();
+			int main();
 		}
-		cout << "\nДАННЫЕ БЫЛИ УСПЕШНО ПЕРЕНЕСЕНЫ!!!!\n";
-		cout << "Готово. Нажмите ENTER, чтобы вернуться в главное меню";
-		getchar();
-		getchar();
-		int main();
+		else
+		{
+			cout << "\nОШИБКА. ФАЙЛ ОКАЗАЛСЯ ПУСТОЙ ИЛИ НЕ СУЩЕСТВУЕТ В РЕПОЗИТОРИИ.\n";
+			getchar();
+			getchar();
+			void import_students();
+		}
 	}
 
 	void exercise()
@@ -514,47 +575,35 @@ public:
 		cout << "Введите группу студента: " << endl;
 		group = istring();
 		StudentData* student = getInfo(group);
-		studentcount = 0;
-		for (int i = 0; student[i].name != ""; i++)
+		if (student[0].name != "")
 		{
-			if (student[i].group == group && student[i].name != "")
+			bubble_sort(student);
+			for (int k = 0; student[k].name != ""; k++)
 			{
-				studentcount++;
-			}
-		}
-		i1 = pow(studentcount, 2);
-		while (i1--)
-		{
-			bool swapped = false;
-			for (int k = 0; k < studentcount - 1; k++)
-			{
-				if (student[k].booknum > student[k + 1].booknum && student[k].c > student[k + 1].c)
+				if (min > student[k].birthYear)
 				{
-					swap(student[k], student[k + 1]);
-					swapped = true;
+					min = student[k].birthYear;
+				}
+				if (max < student[k].birthYear)
+				{
+					max = student[k].birthYear;
 				}
 			}
-			if (swapped == false)
-				break;
+			cout << min << "-" << max;
+			printInfo(student);
+			delete[] student;
+			cout << "\nГотово. Нажмите ENTER, чтобы вернуться в главное меню";
+			getchar();
+			getchar();
+			int main();
 		}
-		for (int k = 0; k < studentcount; k++)
+		else
 		{
-			if (min > student[k].birthYear)
-			{
-				min = student[k].birthYear;
-			}
-			if (max < student[k].birthYear)
-			{
-				max = student[k].birthYear;
-			}
+			cout << "Такой группы нет. нажмите ентер, чтобы повторить попытку";
+			getchar();
+			getchar();
+			show_student();
 		}
-		cout << min << "-" << max;
-		printInfo(student);
-		delete[] student;
-		cout << "\nГотово. Нажмите ENTER, чтобы вернуться в главное меню";
-		getchar();
-		getchar();
-		int main();
 	}
 
 	void show_group()
@@ -585,22 +634,21 @@ public:
 	void show_student()
 	{
 		system("cls");
-		string name, surname;
+		string booknum;
 		cout << "|----------------------------------------------|" << endl;
 		cout << "|      Вывод информации о студенте на экран    |" << endl;
 		cout << "|______________________________________________|" << endl;
-		cout << "Введите Фамилию студента: " << endl;
-		surname = istring();
-		cout << "Введите Имя студента: " << endl;
-		name = istring();
-		string subs = "";
-		subs += surname;
-		subs += " ";
-		subs += name;
-		StudentData* student = getInfo(subs);
+		cout << "Введите номер зачетной книжки: " << endl;
+		booknum = istring();
+		StudentData* student = getInfo(booknum);
 		if (student[0].name != "")
 		{
 			printInfo(student);
+			delete[] student;
+			cout << "\nГотово. Нажмите ENTER, чтобы вернуться в главное меню";
+			getchar();
+			getchar();
+			int main();
 		}
 		else
 		{
@@ -609,10 +657,5 @@ public:
 			getchar();
 			show_student();
 		}
-		delete[] student;
-		cout << "\nГотово. Нажмите ENTER, чтобы вернуться в главное меню";
-		getchar();
-		getchar();
-		int main();
 	}
 };

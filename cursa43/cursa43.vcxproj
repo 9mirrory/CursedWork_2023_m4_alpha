@@ -128,8 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cursa43.cpp" />
-    <ClCompile Include="idata1.cpp" />
-    <ClCompile Include="student1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="student1.h" />
